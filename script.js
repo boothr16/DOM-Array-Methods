@@ -39,21 +39,22 @@ function addData(obj) {
 // Update DOM
 function updateDOM(providedData = data) {
     // Clear main DIV
-    main.innerHTML = '<h2><strong>Person </strong>Wealth</h2>'; // default HTML
+    main.innerHTML = '<h2><strong>Person </strong>Wealth</h2>'; // default HTML with no users
 
+    // for each item in array "data"
     providedData.forEach(item => {
-        const element = document.createElement('div');
-        element.classList.add('person');
-        element.innerHTML = `<strong>${item.name}</strong> ${formatMoney(item.money)}`;
-        main.appendChild(element);
+        const element = document.createElement('div'); // create new div element
+        element.classList.add('person'); // add .person as a class to the new div
+        element.innerHTML = `<strong>${item.name}</strong> ${formatMoney(item.money)}`; // edit HTML
+        main.appendChild(element); // append the new div as a child of the main tag
     });
 }
 
 // Format number as money
 function formatMoney(number) {
-    return '$' + number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    return '$' + number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'); // regex
 
 }
 
 // Event listeners
-addUserBtn.addEventListener('click', getRandomUser);
+addUserBtn.addEventListener('click', getRandomUser); // call getRandomUser when btn is clicked

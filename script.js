@@ -15,9 +15,21 @@ getRandomUser();
 // async/await replaces .then(res => res.json()).then(data => )
 async function getRandomUser() {
     const resp = await fetch('https://randomuser.me/api'); 
-    // fetch is asynchronous, need to wait for response (resp)
+    // fetch is asynchronous, need to wait for fetch to execute to get response as a promise
 
-    const data = await resp.json();
+    const data = await resp.json(); // resp is a promise in JSON format
 
-    console.log(data);
+    const user = data.results[0]; // data is a Javascript object
+
+    const newUser = {
+        name: `${user.name.first} ${user.name.last}`,
+        money: Math.floor(Math.random() * 1000000)
+    };
+
+    addData(newUser);
+}
+
+// Add new object to data array
+function addData(obj) {
+    data.push(obj);
 }

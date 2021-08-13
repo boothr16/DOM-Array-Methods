@@ -29,6 +29,22 @@ async function getRandomUser() {
     addData(newUser);
 }
 
+// Double everyone's money
+function doubleMoney() {
+    data = data.map(user => {
+        return {...user, money: user.money * 2};
+    });
+
+    updateDOM();
+}
+
+// Sort people by richest
+function sortByRichest() {
+    data.sort((a, b) => b.money - a.money); // b-a sorts in descending order. a-b would sort in ascending order. default .sort() with no arguments sorts by string value, not number value
+
+    updateDOM();
+}
+
 // Add new object to data array
 function addData(obj) {
     data.push(obj);
@@ -56,15 +72,7 @@ function formatMoney(number) {
 
 }
 
-// Double everyone's money
-function doubleMoney() {
-    data = data.map(user => {
-        return {...user, money: user.money * 2};
-    });
-
-    updateDOM();
-}
-
 // Event listeners
 addUserBtn.addEventListener('click', getRandomUser); // call getRandomUser when btn is clicked
 doubleBtn.addEventListener('click', doubleMoney);
+sortBtn.addEventListener('click', sortByRichest);

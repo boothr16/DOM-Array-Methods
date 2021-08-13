@@ -56,5 +56,15 @@ function formatMoney(number) {
 
 }
 
+// Double everyone's money
+function doubleMoney() {
+    data = data.map(user => {
+        return {...user, money: user.money * 2};
+    });
+
+    updateDOM();
+}
+
 // Event listeners
 addUserBtn.addEventListener('click', getRandomUser); // call getRandomUser when btn is clicked
+doubleBtn.addEventListener('click', doubleMoney);

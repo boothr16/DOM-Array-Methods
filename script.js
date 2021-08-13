@@ -32,7 +32,7 @@ async function getRandomUser() {
 // Double everyone's money
 function doubleMoney() {
     data = data.map(user => {
-        return {...user, money: user.money * 2};
+        return {...user, money: user.money * 2}; // ... spreads data array into separate arguments
     });
 
     updateDOM();
@@ -41,6 +41,14 @@ function doubleMoney() {
 // Sort people by richest
 function sortByRichest() {
     data.sort((a, b) => b.money - a.money); // b-a sorts in descending order. a-b would sort in ascending order. default .sort() with no arguments sorts by string value, not number value
+
+    updateDOM();
+}
+
+// Filter only millionaires
+function showMillionaires() {
+    data = data.filter(user => user.money >= 1000000);
+    // only keep user in list if user.money is GTE 1000000. otherwise, filter out
 
     updateDOM();
 }
@@ -76,3 +84,4 @@ function formatMoney(number) {
 addUserBtn.addEventListener('click', getRandomUser); // call getRandomUser when btn is clicked
 doubleBtn.addEventListener('click', doubleMoney);
 sortBtn.addEventListener('click', sortByRichest);
+showMillBtn.addEventListener('click', showMillionaires);
